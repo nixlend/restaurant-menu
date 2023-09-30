@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quattrocento', serif;
+}
+
+.background-container, .menu-items, .order-review, .thank-you {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 0 10px;
+}
+
+/* top banner */
+.background-container {
+    margin-bottom: 40px;
+    padding: 50px 55px;
+    background-image: url("burgerBanner.jpg");
+    background-size: 110%;
+    background-repeat: no-repeat;
+    background-position: right -10em top 0;
+    color: #ffffff;
+    background-color: #1a242b;
+}
+
+.top-banner h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.top-banner p {
+    font-size: 1.2rem;
+}
+
+/* menu items */
+.menu-items {
+    padding: 0 30px;
+}
+
+.food-item {
+    display: flex;
+    align-items: center;
+}
+
+.food-item > p {
+    text-align: center;
+    font-size: 3.5rem;
+    width: 80px;
+    height: 80px;
+    /* padding: 10px; */
+    margin-right: 20px;
+}
+
+.food-item h2 {
+    margin-bottom: 8px;
+}
+
+.food-item .ingredients {
+    font-size: 0.82rem;
+    color: #7f7f7f;
+    margin-bottom: 15px;
+}
+
+.food-item .price {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.add-order {
+    margin-left: auto;
+    width: 45px;
+    height: 45px;
+    border: 1px solid #d3d3d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 45px;
+    cursor: pointer;
+}
+
+.add-order i {
+    font-weight: 100;
+    color: #3f3f3f;
+}
+
+.add-order:hover {
+    font-size: 1.4rem;
+}
+
+hr {
+    height: 1px;
+    background-color: #ccc;
+    border: none;
+    margin: 40px 0px;
+}
+
+/* order summary */
+
+.order-review {
+    padding: 0 30px;
+}
+
+.order-review > h2 {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.order-review .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.order-review .cart-item h2 {
+    margin-right: 15px;
+}
+
+.order-review .remove {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    color: #a9a9a9;
+}
+
+.order-review .cart-item-price {
+    margin-left: auto;
+}
+
+.order-review .total-price-sec {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.order-review hr {
+    height: 2px;
+    background-color: black;
+    margin: 20px 0 15px 0;
+}
+
+.order-review .complete-order {
+    background-color: #16db99;
+}
+
+.cart-item .remove {
+    cursor: pointer;
+}
+
+.cart-item .remove:hover {
+    color: #5a5a5a;
+}
+
+.btn {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px;
+}
+
+/* Credit card information */
+body {
+    position: relative;
+}
+
+.card-details {
+    display: none;
+    font-family: 'Roboto', sans-serif;
+    background: #ffffff;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+.card-details h2 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.card-details input {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+    border: 2px solid #a9a9a9;
+    border-radius: 5px;
+}
+
+.card-details .pay {
+    margin-top: 25px;
+    width: 100%;
+    background-color: #16db99;
+    border: 0;
+    cursor: pointer;
+}
+
+/* thank you section */
+.thank-you h2 {
+    text-align: center;
+    font-weight: 600;
+    color: #065f46;
+    background-color: #ecfdf5;
+    padding: 50px 20px;
+    margin: 0 20px;
+}
