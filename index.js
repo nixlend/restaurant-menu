@@ -1,38 +1,39 @@
-import { menuArray } from '/data.js'
+import { menuArray } from "/data.js";
 
-const menuSection = document.getElementById("menu-items")
-const orderReviewSection = document.getElementById("order-review")
-const cardDetailsSection = document.getElementById("card-details")
-const thankYouSection = document.getElementById("thank-you")
-const orderReviewStatus = []
-const creditCard = [{name: ""}, {cardNumber: ""}, {cvv: 0}]
+const menuSection = document.getElementById("menu-items");
+const orderReviewSection = document.getElementById("order-review");
+const cardDetailsSection = document.getElementById("card-details");
+const darkBackDrop = document.getElementById("backdrop");
+const thankYouSection = document.getElementById("thank-you");
+const orderReviewStatus = [];
+const creditCard = [{ name: "" }, { cardNumber: "" }, { cvv: 0 }];
 
-document.addEventListener('click', e => {
-    if(e.target.dataset.addOrder){
-        handleAddOrderClick(e.target.dataset.addOrder)
-    } else if (e.target.dataset.remove){
-        console.log("user clicked on removed")
-        handleRemoveClick(e.target.dataset.remove)
+document.addEventListener("click", (e) => {
+    if (e.target.dataset.addOrder) {
+        handleAddOrderClick(e.target.dataset.addOrder);
+    } else if (e.target.dataset.remove) {
+        console.log("user clicked on removed");
+        handleRemoveClick(e.target.dataset.remove);
     } else if (e.target.id === "complete-order") {
-        handleCompleteOrderClick()
+        handleCompleteOrderClick();
     }
-})
+});
 
-document.addEventListener('submit', e => {
-    if(e.target.id === "card-info-form") {
-        e.preventDefault()
-        handlePayClick()
+document.addEventListener("submit", (e) => {
+    if (e.target.id === "card-info-form") {
+        e.preventDefault();
+        handlePayClick();
     }
-})
+});
 
 function initRender() {
-    menuArray.forEach(function(foodItem) {
+    menuArray.forEach(function (foodItem) {
         menuSection.innerHTML += `
         <div class="food-item">
             <p>${foodItem.emoji}</p>
             <div class="name-ingredients-price">
                 <h2>${foodItem.name}</h2>
-                <p class="ingredients" id="ingredients">${foodItem.ingredients.join(', ')}</p>
+                <p class="ingredients" id="ingredients">${foodItem.ingredients.join(", ")}</p>
                 <p class="price" id="price">&#36;${foodItem.price}</p>
             </div>
             <div class="add-order" data-add-order="${foodItem.id}">
@@ -40,89 +41,89 @@ function initRender() {
             </div>
         </div>
         <hr />
-        `
-    })
+        `;
+    });
 }
 
 function handleAddOrderClick(id) {
     //add the id and value to orderReviewStatus if it doesnt exist, if it exist, then update the value to +1
-    if(orderReviewStatus.filter( order => order.id == id).length === 0) {
-        orderReviewStatus.push({"id": id, "value": 1})
-        thankYouSection.textContent = ``
-        console.log("nothing in array equal to" + id + ", creating new one in array")
+    if (orderReviewStatus.filter((order) => order.id == id).length === 0) {
+        orderReviewStatus.push({ "id": id, "value": 1 });
+        thankYouSection.textContent = ``;
+        console.log("nothing in array equal to" + id + ", creating new one in array");
     } else {
-        orderReviewStatus.forEach(function(order){
-            if(order.id == id){
-                order.value++
+        orderReviewStatus.forEach(function (order) {
+            if (order.id == id) {
+                order.value++;
             }
-        })
-    }  
-    console.log(orderReviewStatus)
-    render("orderReview")
+        });
+    }
+    console.log(orderReviewStatus);
+    render("orderReview");
 }
 
 function handleRemoveClick(id) {
-    orderReviewStatus.forEach( (order, index) => {
-        if(order.id == id && order.value === 1) {
-            orderReviewStatus.splice(index, 1)
+    orderReviewStatus.forEach((order, index) => {
+        if (order.id == id && order.value === 1) {
+            orderReviewStatus.splice(index, 1);
         } else if (order.id == id) {
-            order.value--
+            order.value--;
         }
-    })
-    render("orderReview")
+    });
+    render("orderReview");
 }
 
 function handleCompleteOrderClick() {
-    render("cardDetail")
+    render("cardDetail");
 }
 
 function handlePayClick() {
     // Get information from card detail page
-    creditCard.name = document.getElementById("customerName").value
-    creditCard.cardNumber = document.getElementById("cardNumber").value
-    creditCard.cvv = document.getElementById("cvv").value
-    console.log(creditCard.name + " " + creditCard.cardNumber + " " + creditCard.cvv)
-    render("pay")
-    creditCard.name = ""
-    creditCard.cardNumber = ""
-    creditCard.cvv = 0
-    console.log(creditCard)
+    creditCard.name = document.getElementById("customerName").value;
+    creditCard.cardNumber = document.getElementById("cardNumber").value;
+    creditCard.cvv = document.getElementById("cvv").value;
+    console.log(creditCard.name + " " + creditCard.cardNumber + " " + creditCard.cvv);
+    render("pay");
+    creditCard.name = "";
+    creditCard.cardNumber = "";
+    creditCard.cvv = 0;
+    console.log(creditCard);
 }
 
 function getOrderReviewHtml() {
     // Pontential to refactor the two if statement
     if (orderReviewStatus.length > 0) {
-        let allAddedOrderHtml = []
-        let totalPrice = 0
-        orderReviewStatus.forEach(function(addedItem){
-            const menuItem = menuArray.filter( food => food.id == addedItem.id)[0]
+        let allAddedOrderHtml = [];
+        let totalPrice = 0;
+        orderReviewStatus.forEach(function (addedItem) {
+            const menuItem = menuArray.filter((food) => food.id == addedItem.id)[0];
             allAddedOrderHtml.push(`
             <div class="cart-item">
                 <h2>${menuItem.name} ${addedItem.value > 1 ? " x " + addedItem.value : ""}</h2>
                 <p class="remove" id="remove" data-remove="${menuItem.id}">remove</p>
                 <p class="cart-item-price" id="cart-item-price">$${menuItem.price}</p>
-            </div>`)
-            totalPrice += menuItem.price * addedItem.value
-        })
+            </div>`);
+            totalPrice += menuItem.price * addedItem.value;
+        });
         orderReviewSection.innerHTML = `
         <h2>Your order</h2>
-            ${allAddedOrderHtml.join('')}
+            ${allAddedOrderHtml.join("")}
             <hr />
             <div class="total-price-sec">
                 <h2>Total price:</h2>
                 <p id="total">$${totalPrice}</p>
             </div>
         <a class="complete-order btn" href="#" id="complete-order">Complete order</a>
-        `
+        `;
     } else if (orderReviewStatus.length === 0) {
-        orderReviewSection.innerHTML = ``
+        orderReviewSection.innerHTML = ``;
     }
 }
 
 function getCardDetailHtml() {
+    darkBackDrop.style.display = "block";
     cardDetailsSection.style.display = "block";
-    cardDetailsSection.innerHTML = 
-    `
+    cardDetailsSection.innerHTML = `
     <form class="card-container" id="card-info-form">
         <h2>Enter card details</h2>
         <label for="name"></label>
@@ -133,30 +134,30 @@ function getCardDetailHtml() {
         <input type="number" id="cvv" name="cvv" placeholder="Enter CVV">
         <button class="pay btn" href="#" id="pay">Pay</button>
     </form>
-    `
+    `;
 }
 
 function getPaymentHtml() {
-    orderReviewSection.innerHTML = ``
+    orderReviewSection.innerHTML = ``;
     // One way to empty the array!
-    orderReviewStatus.length = 0 
-    cardDetailsSection.innerHTML = ``
+    orderReviewStatus.length = 0;
+    cardDetailsSection.innerHTML = ``;
     cardDetailsSection.style.display = "none";
+    darkBackDrop.style.display = "none";
     // thank you
-    thankYouSection.innerHTML = `<h2>Thanks, ${creditCard.name}! Your order is on its way!</h2>`
+    thankYouSection.innerHTML = `<h2>Thanks, ${creditCard.name}! Your order is on its way!</h2>`;
 }
 
-const render = html => {
-    if(html === "orderReview") {
-        return getOrderReviewHtml()
+const render = (html) => {
+    if (html === "orderReview") {
+        return getOrderReviewHtml();
     } else if (html === "cardDetail") {
-        return getCardDetailHtml()
+        return getCardDetailHtml();
     } else if (html === "pay") {
-        return getPaymentHtml()
+        return getPaymentHtml();
     } else if (html === "removeOrder") {
-        return getRemoveHtml()
+        return getRemoveHtml();
     }
+};
 
-}
-
-initRender()
+initRender();
