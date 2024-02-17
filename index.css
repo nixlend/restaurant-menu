@@ -5,10 +5,13 @@
 }
 
 body {
-    font-family: 'Quattrocento', serif;
+    font-family: "Quattrocento", serif;
 }
 
-.background-container, .menu-items, .order-review, .thank-you {
+.background-container,
+.menu-items,
+.order-review,
+.thank-you {
     margin: 0 auto;
     max-width: 600px;
     padding: 0 10px;
@@ -119,7 +122,7 @@ hr {
 }
 
 .order-review .remove {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 0.9rem;
     color: #a9a9a9;
 }
@@ -155,7 +158,7 @@ hr {
 
 .btn {
     display: block;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 1.2rem;
     background-color: #000000;
     color: #ffffff;
@@ -170,11 +173,23 @@ body {
     position: relative;
 }
 
+#backdrop {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 4;
+}
+
 .card-details {
     display: none;
-    font-family: 'Roboto', sans-serif;
+    z-index: 5;
+    font-family: "Roboto", sans-serif;
     background: #ffffff;
-    width: 500px;
+    max-width: 500px;
     height: 500px;
     position: absolute;
     right: 0;
@@ -183,7 +198,9 @@ body {
     bottom: 0;
     margin: auto;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+        rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+        rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .card-container {
